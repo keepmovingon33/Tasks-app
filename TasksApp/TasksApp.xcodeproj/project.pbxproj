@@ -17,6 +17,9 @@
 		337902942771167B00E8A30E /* OngoingTableViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337902932771167B00E8A30E /* OngoingTableViewControllers.swift */; };
 		33790296277116AD00E8A30E /* DoneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33790295277116AD00E8A30E /* DoneTableViewController.swift */; };
 		337902982771564200E8A30E /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337902972771564200E8A30E /* NewTaskViewController.swift */; };
+		33F3BD822772D8D400F4A8CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33F3BD812772D8D400F4A8CF /* GoogleService-Info.plist */; };
+		33F3BD842772DA4600F4A8CF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BD832772DA4600F4A8CF /* Task.swift */; };
+		33F3BD872772DB6900F4A8CF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BD862772DB6900F4A8CF /* DatabaseManager.swift */; };
 		562CF9AA598B348CC5B08C57 /* Pods_TasksApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4BDE2B5EE9DF66018175C9B /* Pods_TasksApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +38,9 @@
 		337902932771167B00E8A30E /* OngoingTableViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTableViewControllers.swift; sourceTree = "<group>"; };
 		33790295277116AD00E8A30E /* DoneTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneTableViewController.swift; sourceTree = "<group>"; };
 		337902972771564200E8A30E /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		33F3BD812772D8D400F4A8CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		33F3BD832772DA4600F4A8CF /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		33F3BD862772DB6900F4A8CF /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		A4BDE2B5EE9DF66018175C9B /* Pods_TasksApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,6 +77,7 @@
 		3379027A276F843600E8A30E /* TasksApp */ = {
 			isa = PBXGroup;
 			children = (
+				33F3BD852772DB5400F4A8CF /* Service */,
 				337902922771166800E8A30E /* Controllers */,
 				3379028F2770F9BB00E8A30E /* Model */,
 				3379027B276F843600E8A30E /* AppDelegate.swift */,
@@ -78,6 +85,7 @@
 				33790281276F843600E8A30E /* Main.storyboard */,
 				33790284276F843700E8A30E /* Assets.xcassets */,
 				33790286276F843700E8A30E /* LaunchScreen.storyboard */,
+				33F3BD812772D8D400F4A8CF /* GoogleService-Info.plist */,
 				33790289276F843700E8A30E /* Info.plist */,
 			);
 			path = TasksApp;
@@ -87,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				337902902770F9CB00E8A30E /* MenuSection.swift */,
+				33F3BD832772DA4600F4A8CF /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,6 +109,14 @@
 				337902972771564200E8A30E /* NewTaskViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		33F3BD852772DB5400F4A8CF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				33F3BD862772DB6900F4A8CF /* DatabaseManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		70C4A26A8D4C73CC3185FBA7 /* Frameworks */ = {
@@ -179,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33790288276F843700E8A30E /* LaunchScreen.storyboard in Resources */,
+				33F3BD822772D8D400F4A8CF /* GoogleService-Info.plist in Resources */,
 				33790285276F843700E8A30E /* Assets.xcassets in Resources */,
 				33790283276F843600E8A30E /* Main.storyboard in Resources */,
 			);
@@ -233,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F3BD842772DA4600F4A8CF /* Task.swift in Sources */,
 				33790280276F843600E8A30E /* TasksViewController.swift in Sources */,
 				337902982771564200E8A30E /* NewTaskViewController.swift in Sources */,
 				337902942771167B00E8A30E /* OngoingTableViewControllers.swift in Sources */,
@@ -240,6 +259,7 @@
 				337902912770F9CB00E8A30E /* MenuSection.swift in Sources */,
 				3379027E276F843600E8A30E /* SceneDelegate.swift in Sources */,
 				33790296277116AD00E8A30E /* DoneTableViewController.swift in Sources */,
+				33F3BD872772DB6900F4A8CF /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
