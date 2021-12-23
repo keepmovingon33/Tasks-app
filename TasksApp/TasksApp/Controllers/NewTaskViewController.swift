@@ -19,6 +19,8 @@ class NewTaskViewController: UIViewController {
     private var subscribers = Set<AnyCancellable>()
     @Published private var taskString: String?
     
+    weak var delegate: TaskVCDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        view.backgroundColor = .clear
@@ -81,6 +83,9 @@ class NewTaskViewController: UIViewController {
         guard let taskString = self.taskString else { return }
         
         let task = Task(title: taskString)
+        
+        delegate?.didAddTask(task)
+        dismiss(animated: true, completion: nil)
     }
     
     

@@ -10,6 +10,5 @@ import UIKit
 class DoneTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .red
     }
 }

@@ -13,10 +13,11 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var ongoingViewController: UIView!
     @IBOutlet weak var doneViewController: UIView!
     
+    private var databaseManager = DatabaseManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .yellow
         setupSegmenedControl()
     }
 
@@ -54,9 +55,28 @@ class TasksViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showTasksDetails",
+           let destination = segue.destination as? NewTaskViewController {
+            destination.delegate = self
+        }
+    }
+    
     @IBAction func addTaskButtonTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "showTasksDetails", sender: nil)
     }
 
 }
 
+extension TasksViewController: TaskVCDelegate {
+    func didAddTask(_ task: Task) {
+        databaseManager.addTask(task) { (result) in
+            switch result {
+            case .success:
+                print("yay")
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+            }
+        }
+    }
+}

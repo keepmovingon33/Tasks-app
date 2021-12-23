@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>98528813184-rmdvadjrs31ejr65a6ua4jro2p6hts4m.apps.googleusercontent.com</string>
+	<string>939154122366-jhr2br9vg7bp979fgo1vl5jhnun4qjct.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.98528813184-rmdvadjrs31ejr65a6ua4jro2p6hts4m</string>
+	<string>com.googleusercontent.apps.939154122366-jhr2br9vg7bp979fgo1vl5jhnun4qjct</string>
 	<key>API_KEY</key>
-	<string>AIzaSyChILpf5Wn9HkiGt6u2qHY86bmo1xSj0rc</string>
+	<string>AIzaSyBkGiVxUgKPeyCdff-RBw87d2uAKE_vmYc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>98528813184</string>
+	<string>939154122366</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.sky.Trafel</string>
+	<string>com.sky.TasksApp</string>
 	<key>PROJECT_ID</key>
-	<string>trafel-172e2</string>
+	<string>tasks-1aeb7</string>
 	<key>STORAGE_BUCKET</key>
-	<string>trafel-172e2.appspot.com</string>
+	<string>tasks-1aeb7.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:98528813184:ios:d4bb7b45b3947535030665</string>
+	<string>1:939154122366:ios:ceb1a25c25470aa39f1a2f</string>
 </dict>
 </plist>
