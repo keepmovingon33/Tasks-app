@@ -56,6 +56,7 @@ class TasksViewController: UIViewController, Animatable{
         }
     }
     
+    // pass data from child viewcontroller back to parent view through segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTasksDetails",
            let destination = segue.destination as? NewTaskViewController {
@@ -63,7 +64,16 @@ class TasksViewController: UIViewController, Animatable{
         } else if segue.identifier == "showOngoingTask" {
             let destination = segue.destination as? OngoingTableViewController
             destination?.delegate = self
+        } else if segue.identifier == "showEditTask",
+                  let destination = segue.destination as? NewTaskViewController,
+                  let taskToEdit = sender as? Task {
+            destination.delegate = self
+            destination.taskToEdit = taskToEdit
         }
+    }
+    
+    private func editTask(task: Task) {
+        performSegue(withIdentifier: "showEditTask", sender: task)
     }
     
     @IBAction func addTaskButtonTapped(_ sender: UIButton) {
@@ -83,16 +93,32 @@ class TasksViewController: UIViewController, Animatable{
 
 }
 
-extension TasksViewController: TaskVCDelegate {
+extension TasksViewController: NewTaskVCDelegate {
     func didAddTask(_ task: Task) {
-        databaseManager.addTask(task) { (result) in
-            switch result {
-            case .success:
-                print("yay")
-            case .failure(let error):
-                print("error: \(error.localizedDescription)")
+        presentedViewController?.dismiss(animated: true, completion: { [unowned self] in
+            self.databaseManager.addTask(task) { [weak self] (result) in
+                switch result {
+                case .success:
+                    break
+                case .failure(let error):
+                    self?.showToast(state: .error, message: error.localizedDescription)
+                }
             }
-        }
+        })
+    }
+    
+    func didEditTask(_ task: Task) {
+        presentedViewController?.dismiss(animated: true, completion: { [unowned self] in
+            guard let id = task.id else { return }
+            self.databaseManager.editTask(id: id, title: task.title, deadline: task.deadline) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.showToast(state: .info, message: "Updated successfully")
+                case .failure(let error):
+                    self?.showToast(state: .error, message: error.localizedDescription)
+                }
+            }
+        })
     }
 }
 
@@ -104,8 +130,12 @@ extension TasksViewController: OngoingTVCDelegate {
             guard let id = task.id else { return }
             self?.deleteTask(id: id)
         }
+        let editAction = UIAlertAction(title: "Edit", style: .default) { [unowned self] _ in
+            self.editTask(task: task)
+        }
         alertViewController.addAction(cancelAction)
         alertViewController.addAction(deleteAction)
+        alertViewController.addAction(editAction)
         present(alertViewController, animated: true, completion: nil)
     }
 }

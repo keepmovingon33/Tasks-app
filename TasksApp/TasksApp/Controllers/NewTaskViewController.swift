@@ -21,7 +21,8 @@ class NewTaskViewController: UIViewController {
     @Published private var taskString: String?
     @Published private var deadline: Date?
     
-    weak var delegate: TaskVCDelegate?
+    weak var delegate: NewTaskVCDelegate?
+    var taskToEdit: Task?
     
     private lazy var calendarView: CalendarView = {
         let view = CalendarView()
@@ -35,6 +36,8 @@ class NewTaskViewController: UIViewController {
 //        view.backgroundColor = .clear
 //        backgroundView.backgroundColor = .clear
         
+        updateEditTask()
+        
         // make the keyboard appeared
         taskTextField.becomeFirstResponder()
         
@@ -45,6 +48,17 @@ class NewTaskViewController: UIViewController {
         
         // calculate the height of the keyboard
         observeKeyboard()
+    }
+    
+    private func updateEditTask() {
+        if let taskToEdit = self.taskToEdit {
+            taskTextField.text = taskToEdit.title
+            taskString = taskToEdit.title
+            deadline = taskToEdit.deadline
+            saveButton.setTitle("Update", for: .normal)
+            // update calendar
+            calendarView.selectDate(date: taskToEdit.deadline)
+        }
     }
     
     private func setupGesture() {
@@ -100,10 +114,17 @@ class NewTaskViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let taskString = self.taskString else { return }
         
-        let task = Task(title: taskString, deadline: deadline)
+        var task = Task( title: taskString, deadline: deadline)
         
-        delegate?.didAddTask(task)
-        dismiss(animated: true, completion: nil)
+        if let id = taskToEdit?.id {
+            task.id = id
+        }
+        
+        if taskToEdit == nil {
+            delegate?.didAddTask(task)
+        } else {
+            delegate?.didEditTask(task)
+        }
     }
     
     private func showCalendar() {

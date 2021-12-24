@@ -77,6 +77,10 @@ class CalendarView: UIView {
         ])
     }
     
+    func selectDate(date: Date?) {
+        calendar.select(date, scrollToDate: true)
+    }
+    
     
     // when the date is unselected -> remove button out of stackView
     override func willMove(toSuperview newSuperview: UIView?) {

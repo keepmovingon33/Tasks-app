@@ -16,6 +16,12 @@ class OngoingTaskTableViewCell: UITableViewCell {
     
     func configure(with task: Task) {
         titleLabel.text = task.title
+        dueLabel.text = task.deadline?.toRelativeString()
+        
+        if task.deadline?.isOverDue() == true {
+            dueLabel.textColor = .red
+            dueLabel.font = UIFont(name: "AvenirNext-Medium", size: 12)
+        }
     }
     
     @IBAction func actionButtonTapped(_ sender: Any) {
