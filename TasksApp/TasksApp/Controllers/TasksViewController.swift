@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Loaf
 
-class TasksViewController: UIViewController {
+class TasksViewController: UIViewController, Animatable{
 
     @IBOutlet weak var menuSegmentedControl: UISegmentedControl!
     @IBOutlet weak var ongoingViewController: UIView!
@@ -59,11 +60,25 @@ class TasksViewController: UIViewController {
         if segue.identifier == "showTasksDetails",
            let destination = segue.destination as? NewTaskViewController {
             destination.delegate = self
+        } else if segue.identifier == "showOngoingTask" {
+            let destination = segue.destination as? OngoingTableViewController
+            destination?.delegate = self
         }
     }
     
     @IBAction func addTaskButtonTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "showTasksDetails", sender: nil)
+    }
+    
+    private func deleteTask(id: String) {
+        databaseManager.deleteTask(id: id) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.showToast(state: .error, message: error.localizedDescription)
+            case .success:
+                self?.showToast(state: .info, message: "Delete task successfully!")
+            }
+        }
     }
 
 }
@@ -78,5 +93,19 @@ extension TasksViewController: TaskVCDelegate {
                 print("error: \(error.localizedDescription)")
             }
         }
+    }
+}
+
+extension TasksViewController: OngoingTVCDelegate {
+    func showOption(for task: Task) {
+        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let id = task.id else { return }
+            self?.deleteTask(id: id)
+        }
+        alertViewController.addAction(cancelAction)
+        alertViewController.addAction(deleteAction)
+        present(alertViewController, animated: true, completion: nil)
     }
 }

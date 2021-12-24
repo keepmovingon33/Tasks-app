@@ -29,13 +29,15 @@ class DatabaseManager {
         }
     }
     
-    func addTasksListener(completion: @escaping (Result<[Task], Error>) -> Void) {
-        listener = tasksCollection.addSnapshotListener({ (snapshot, error) in
+    func addTasksListener(forDoneTasks isDone: Bool, completion: @escaping (Result<[Task], Error>) -> Void) {
+        listener = tasksCollection
+            .whereField("isDone", isEqualTo: isDone)
+            .order(by: "createdAt", descending: true)
+            .addSnapshotListener({ (snapshot, error) in
             
             if let error = error {
                 completion(.failure(error))
             } else {
-              
 //                var tasks = [Task]()
 //                snapshot?.documents.forEach({ (document) in
 //                    if let task = try? document.data(as: Task.self) {
@@ -58,9 +60,24 @@ class DatabaseManager {
         })
     }
     
-    func updateTasksToDone(id: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        let fields: [String: Any] = ["isDone" : true, "doneAt" : Date()]
+    func updateTasks(id: String, isDone: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
+        var fields: [String: Any] = [:]
+        if isDone {
+            fields = ["isDone": true, "doneAt": Date()]
+        } else {
+            fields = ["isDone": false, "doneAt": FieldValue.delete()]
+        }
         tasksCollection.document(id).updateData(fields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func deleteTask(id: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        tasksCollection.document(id).delete { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
