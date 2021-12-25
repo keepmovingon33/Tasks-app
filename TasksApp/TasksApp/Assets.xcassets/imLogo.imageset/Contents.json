@@ -1,6 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
+      "filename" : "imLogo.jpg",
       "idiom" : "universal"
     }
   ],

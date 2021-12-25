@@ -21,6 +21,8 @@ class NewTaskViewController: UIViewController {
     @Published private var taskString: String?
     @Published private var deadline: Date?
     
+    private let authManager = AuthManager()
+    
     weak var delegate: NewTaskVCDelegate?
     var taskToEdit: Task?
     
@@ -114,7 +116,8 @@ class NewTaskViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let taskString = self.taskString else { return }
         
-        var task = Task( title: taskString, deadline: deadline)
+        guard let taskString = self.taskString, let uid = authManager.getUserId() else { return }
+        var task = Task(title: taskString, deadline: deadline, uid: uid)
         
         if let id = taskToEdit?.id {
             task.id = id

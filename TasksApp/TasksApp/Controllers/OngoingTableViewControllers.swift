@@ -17,6 +17,8 @@ class OngoingTableViewController: UITableViewController, Animatable {
     private let databaseManager = DatabaseManager()
     weak var delegate: OngoingTVCDelegate?
     
+    private let authManager = AuthManager()
+    
     private var tasks: [Task] = [] {
         didSet {
             tableView.reloadData()
@@ -32,7 +34,11 @@ class OngoingTableViewController: UITableViewController, Animatable {
     }
     
     private func addTasksListener() {
-        databaseManager.addTasksListener(forDoneTasks: false) { [weak self] (result) in
+        guard let uid = authManager.getUserId() else {
+            print("can't get uid")
+            return
+        }
+        databaseManager.addTasksListener(forDoneTasks: false, uid: uid) { [weak self] (result) in
             switch result {
             case .success(let tasks):
                 self?.tasks = tasks

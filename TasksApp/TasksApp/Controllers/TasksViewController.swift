@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Loaf
 
 class TasksViewController: UIViewController, Animatable{
 
@@ -15,6 +14,8 @@ class TasksViewController: UIViewController, Animatable{
     @IBOutlet weak var doneViewController: UIView!
     
     private var databaseManager = DatabaseManager()
+    private let authManager = AuthManager()
+    private let navigationManager = NavigationManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +91,32 @@ class TasksViewController: UIViewController, Animatable{
             }
         }
     }
+    
+    @IBAction func menuButtonTapped(_ sender: UIButton) {
+        showMenuOption()
+    }
+    
+    private func showMenuOption() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let logOutAction = UIAlertAction(title: "Logout", style: .default) { [unowned self] _ in
+            self.logoutUser()
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(logOutAction)
+        present(alertController, animated: true, completion: nil)
+    }
 
+    private func logoutUser() {
+        authManager.logout { (result) in
+            switch result {
+            case .success:
+                navigationManager.show(scene: .onboarding)
+            case .failure(let error):
+                self.showToast(state: .error, message: error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension TasksViewController: NewTaskVCDelegate {
