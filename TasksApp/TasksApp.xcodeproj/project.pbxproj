@@ -27,6 +27,11 @@
 		33F3BDB527755D6100F4A8CF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BDB427755D6100F4A8CF /* CalendarView.swift */; };
 		33F3BDB7277581AF00F4A8CF /* CalendarViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BDB6277581AF00F4A8CF /* CalendarViewDelegate.swift */; };
 		33F3BDBA2775838B00F4A8CF /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BDB92775838B00F4A8CF /* Extension+Date.swift */; };
+		33F3BDBC27767AE200F4A8CF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BDBB27767AE200F4A8CF /* OnboardingViewController.swift */; };
+		33F3BDBE27767C3200F4A8CF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BDBD27767C3200F4A8CF /* LoginViewController.swift */; };
+		33F3BDC027767D5A00F4A8CF /* LoginVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BDBF27767D5A00F4A8CF /* LoginVCDelegate.swift */; };
+		33F3BDC227768AB500F4A8CF /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BDC127768AB500F4A8CF /* NavigationManager.swift */; };
+		33F3BDC427769FD500F4A8CF /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3BDC327769FD400F4A8CF /* AuthManager.swift */; };
 		562CF9AA598B348CC5B08C57 /* Pods_TasksApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4BDE2B5EE9DF66018175C9B /* Pods_TasksApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +60,11 @@
 		33F3BDB427755D6100F4A8CF /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		33F3BDB6277581AF00F4A8CF /* CalendarViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewDelegate.swift; sourceTree = "<group>"; };
 		33F3BDB92775838B00F4A8CF /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
+		33F3BDBB27767AE200F4A8CF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		33F3BDBD27767C3200F4A8CF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		33F3BDBF27767D5A00F4A8CF /* LoginVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCDelegate.swift; sourceTree = "<group>"; };
+		33F3BDC127768AB500F4A8CF /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		33F3BDC327769FD400F4A8CF /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		A4BDE2B5EE9DF66018175C9B /* Pods_TasksApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,6 +134,8 @@
 				33790295277116AD00E8A30E /* DoneTableViewController.swift */,
 				3379027F276F843600E8A30E /* TasksViewController.swift */,
 				337902972771564200E8A30E /* NewTaskViewController.swift */,
+				33F3BDBB27767AE200F4A8CF /* OnboardingViewController.swift */,
+				33F3BDBD27767C3200F4A8CF /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -132,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				33F3BD862772DB6900F4A8CF /* DatabaseManager.swift */,
+				33F3BDC127768AB500F4A8CF /* NavigationManager.swift */,
+				33F3BDC327769FD400F4A8CF /* AuthManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -142,6 +156,7 @@
 				33F3BD8B2773A8E700F4A8CF /* TasksVCDelegate.swift */,
 				33F3BDB22775076300F4A8CF /* Animatable.swift */,
 				33F3BDB6277581AF00F4A8CF /* CalendarViewDelegate.swift */,
+				33F3BDBF27767D5A00F4A8CF /* LoginVCDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -296,14 +311,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F3BDBE27767C3200F4A8CF /* LoginViewController.swift in Sources */,
+				33F3BDC427769FD500F4A8CF /* AuthManager.swift in Sources */,
 				33F3BD8F2773B62400F4A8CF /* OngoingTaskTableViewCell.swift in Sources */,
 				33F3BD842772DA4600F4A8CF /* Task.swift in Sources */,
 				33790280276F843600E8A30E /* TasksViewController.swift in Sources */,
+				33F3BDBC27767AE200F4A8CF /* OnboardingViewController.swift in Sources */,
 				33F3BDB7277581AF00F4A8CF /* CalendarViewDelegate.swift in Sources */,
 				337902982771564200E8A30E /* NewTaskViewController.swift in Sources */,
 				33F3BDBA2775838B00F4A8CF /* Extension+Date.swift in Sources */,
 				337902942771167B00E8A30E /* OngoingTableViewControllers.swift in Sources */,
+				33F3BDC227768AB500F4A8CF /* NavigationManager.swift in Sources */,
 				33F3BD8C2773A8E700F4A8CF /* TasksVCDelegate.swift in Sources */,
+				33F3BDC027767D5A00F4A8CF /* LoginVCDelegate.swift in Sources */,
 				33F3BDB1277502AE00F4A8CF /* DoneTasksTableViewCell.swift in Sources */,
 				3379027C276F843600E8A30E /* AppDelegate.swift in Sources */,
 				33F3BDB527755D6100F4A8CF /* CalendarView.swift in Sources */,
